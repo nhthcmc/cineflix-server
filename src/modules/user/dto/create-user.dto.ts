@@ -1,10 +1,11 @@
-import { IsEmail, IsNotEmpty } from "class-validator";
+import { IsNotEmpty, MaxLength } from "class-validator";
 
+// tạo tài khoản người dùng
 export class CreateUserDTO {
+    @MaxLength(20)
+    userName: string;
     @IsNotEmpty()
-    userName: string
-    @IsEmail()
-    email: string
+    email: string;
     @IsNotEmpty()
-    password: string
+    password: string;
 }

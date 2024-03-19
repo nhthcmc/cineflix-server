@@ -1,119 +1,42 @@
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "mysql"
-    url      = env("DATABASE_URL")
-}
-
-model Admin {
-    id           Int     @id @default(autoincrement())
-    username     String  @unique
-    email        String  @unique
-    emailConfirm Boolean @default(false)
-    password     String  @db.Char(50)
-    chatList     Chat[]
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
 model User {
-    id           Int            @id @default(autoincrement())
-    userName     String?
-    email        String         @unique(map: "email") @db.Char(50)
-    emailConfirm Boolean        @default(false)
-    password     String         @db.Char(50)
-    avatar       String         @db.Text
-    wallet       Float
-    payments     Payment[]
-    subscription Subscription[]
-    favorites    Favorite[]
-    history      History[]
-    chatList     Chat[]
+  id           Int      @id() @default(autoincrement())
+  userName     String   @unique @db.VarChar(20)
+  email        String   @unique @db.Char(50)
+  emailConfirm Boolean  @default(false)
+  password     String
+  avatar       String?  @db.LongText
+  role         UserRole @default(user)
+  createAt     String
+  updateAt     String
 }
 
-model Payment {
-    id       Int    @id @default(autoincrement())
-    amount   Int?
-    datePaid String
-    user     User   @relation(fields: [userId], references: [id])
-    userId   Int
+enum UserRole {
+  admin
+  user
 }
 
-model Subscription {
-    id        Int    @id @default(autoincrement())
-    plan      String
-    startDate String
-    endDate   String
-    user      User   @relation(fields: [userId], references: [id])
-    userId    Int
-}
-
-model Favorite {
-    id      Int   @id @default(autoincrement())
-    movie   Movie @relation(fields: [movieId], references: [id])
-    movieId Int
-    user    User  @relation(fields: [userId], references: [id])
-    userId  Int
-}
-
-model History {
-    id      Int   @id @default(autoincrement())
-    movie   Movie @relation(fields: [movieId], references: [id])
-    movieId Int
-    user    User  @relation(fields: [userId], references: [id])
-    userId  Int
-}
-
-model Movie {
-    id          Int        @id @default(autoincrement())
-    title       String
-    thumbnail   String     @db.LongText
-    releaseYear Int?
-    des         String
-    genre       Genre      @relation(fields: [genreId], references: [id])
-    genreId     Int
-    language    Language   @relation(fields: [languageId], references: [id])
-    languageId  Int
-    episodes    Episode[]
-    Favorite    Favorite[]
-    History     History[]
-}
-
-model Episode {
-    id      Int     @id @default(autoincrement())
-    runtime Int?
-    url     String? @db.LongText
-    movie   Movie   @relation(fields: [movieId], references: [id])
-    movieId Int
+model Film {
+  id          Int     @id @default(autoincrement())
+  title       String
+  poster      String  @db.LongText
+  releaseYear Int
+  source      String  @db.LongText
+  des         String?
+  Genre       Genre?  @relation(fields: [genreId], references: [id])
+  genreId     Int?
 }
 
 model Genre {
-    id     Int     @id @default(autoincrement())
-    name   String
-    movies Movie[]
-}
-
-model Language {
-    id     Int     @id @default(autoincrement())
-    name   String
-    movies Movie[]
-}
-
-model Chat {
-    id             Int      @id @default(autoincrement())
-    userId         Int
-    User           User     @relation(fields: [userId], references: [id])
-    adminId        Int?
-    Admin          Admin?   @relation(fields: [adminId], references: [id])
-    content        String
-    type           ChatType @default(text)
-    createAt       String
-    discordChannel String
-}
-
-enum ChatType {
-    text
-    img
-    video
-    link
+  id    Int    @id @default(autoincrement())
+  name  String
+  films Film[]
 }

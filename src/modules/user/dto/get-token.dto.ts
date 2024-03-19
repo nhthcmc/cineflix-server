@@ -1,8 +1,9 @@
-import { IsString, Length } from "class-validator";
+import { IsString, MaxLength } from "class-validator";
 
-export class userLoginDTO {
-    @Length(3, 10)
-    userName: string
+//validate kiểu dữ liệu gửi lên server
+export class GetTokenDTO {
+    @MaxLength(20)
+    userName: string;
     @IsString()
-    password: string
+    password: string;
 }
