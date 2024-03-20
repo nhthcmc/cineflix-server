@@ -7,6 +7,19 @@ export class FilmService {
     constructor(
         private prisma: PrismaService
     ) { }
+    async showFilm() {
+        try {
+            let film = await this.prisma.film.findMany({
+            })
+            return {
+                data: film
+            }
+        } catch (err) {
+            return {
+                error: err
+            }
+        }
+    }
     // async uploadFilmResource(data: UploadFilmDTO) {
     //     try {
     //         let film = await this.prisma.film.create({

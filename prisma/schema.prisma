@@ -31,12 +31,4 @@ model Film {
   releaseYear Int
   source      String  @db.LongText
   des         String?
-  Genre       Genre?  @relation(fields: [genreId], references: [id])
-  genreId     Int?
-}
-
-model Genre {
-  id    Int    @id @default(autoincrement())
-  name  String
-  films Film[]
 }
