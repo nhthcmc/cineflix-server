@@ -8,15 +8,16 @@ datasource db {
 }
 
 model User {
-  id           Int      @id() @default(autoincrement())
-  userName     String   @unique @db.VarChar(20)
-  email        String   @unique @db.Char(50)
-  emailConfirm Boolean  @default(false)
+  id           Int        @id() @default(autoincrement())
+  userName     String     @unique @db.VarChar(20)
+  email        String     @unique @db.Char(50)
+  emailConfirm Boolean    @default(false)
   password     String
-  avatar       String?  @db.LongText
-  role         UserRole @default(user)
+  avatar       String?    @db.LongText
+  role         UserRole   @default(user)
   createAt     String
   updateAt     String
+  favorites    Favorite[]
 }
 
 enum UserRole {
@@ -25,10 +26,27 @@ enum UserRole {
 }
 
 model Film {
-  id          Int     @id @default(autoincrement())
+  id          Int        @id @default(autoincrement())
   title       String
-  poster      String  @db.LongText
+  poster      String     @db.LongText
   releaseYear Int
-  source      String  @db.LongText
+  source      String     @db.LongText
   des         String?
+  Genre       Genre?     @relation(fields: [genreId], references: [id])
+  genreId     Int?
+  favorite    Favorite[]
+}
+
+model Genre {
+  id    Int    @id @default(autoincrement())
+  name  String
+  films Film[]
+}
+
+model Favorite {
+  id     Int   @id @default(autoincrement())
+  User   User? @relation(fields: [userId], references: [id])
+  userId Int?
+  Film   Film? @relation(fields: [filmId], references: [id])
+  filmId Int?
 }

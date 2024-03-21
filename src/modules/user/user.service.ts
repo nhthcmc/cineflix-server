@@ -32,6 +32,7 @@ export class UserService {
             }
         }
     }
+    // tạo tài khoản user
     async createUserAccount(data: CreateUserDTO) {
         try {
             let user = await this.prisma.user.create({

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Res } from '@nestjs/common';
+import { Body, Controller, Post, Res } from '@nestjs/common';
 import { UserService } from './user.service';
 import { GetTokenDTO } from './dto/get-token.dto';
 import { Response } from 'express';
@@ -16,7 +16,7 @@ export class UserController {
       let { error, data } = await this.userService.findByUserName(body.userName)
       if (error) {
         throw {
-          message: "Sai tên đăng nhập"
+          message: "Invalid username"
         }
       }
       if (body.password != data.password) {
@@ -44,7 +44,7 @@ export class UserController {
       console.log("data", data)
       if (!data) {
         throw {
-          message: "Lỗi"
+          message: "Error"
         }
       }
       return res.status(200).json(
@@ -55,12 +55,12 @@ export class UserController {
     } catch (err) {
       return res.status(500).json(
         {
-          message: "Token không chính xác"
+          message: "Invalid token"
         }
       )
     }
   }
-  // đăng kí
+  // đăng kí tài khoản mới 
   @Post()
   async createUser(@Body() body: CreateUserDTO, @Res() res: Response) {
     try {
@@ -70,18 +70,18 @@ export class UserController {
       if (error) {
         if (error.meta?.target == "user_userName_key") {
           throw {
-            message: "Tên người dùng đã tồn tại"
+            message: "This username has been taken"
           }
         }
         if (error.meta?.target == "user_email_key") {
           throw {
-            message: "Email đã được đăng kí"
+            message: "This email has been registered"
           }
         }
       }
       return res.status(200).json(
         {
-          message: "Đăng kí thành công",
+          message: "Registered successful",
           data
         }
       )
@@ -89,7 +89,7 @@ export class UserController {
       console.log('err', err)
       return res.status(500).json(
         {
-          message: "Lỗi đăng kí"
+          message: "Register error"
         }
       )
     }

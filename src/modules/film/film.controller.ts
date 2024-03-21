@@ -1,8 +1,9 @@
 import { Post, Res, Body, Controller, Get } from '@nestjs/common';
 import { FilmService } from './film.service';
-import { UploadFilmDTO } from './dto/upload-film.dto';
+// import { UploadFilmDTO } from './dto/upload-film.dto';
 import { Response } from 'express';
 
+// lấy dữ liệu phim về (server -> client)
 @Controller('film')
 export class FilmController {
   constructor(private readonly filmService: FilmService) { }
@@ -14,11 +15,11 @@ export class FilmController {
       console.log("err", error)
       return res.status(200).json({
         data,
-        message: "Thành công lấy được dữ liệu phim"
+        message: "Film database loaded"
       })
     } catch (err) {
       return res.status(500).json({
-        message: "Lỗi, không lấy được dữ liệu phim"
+        message: "Error: Film database loaded issues"
       })
     }
   }
@@ -41,5 +42,4 @@ export class FilmController {
   //     )
   //   }
   // }
-
 }

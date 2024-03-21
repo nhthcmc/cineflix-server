@@ -2,6 +2,7 @@ export default [
     {
         title: "A Farewell to Arms",
         releaseYear: 1932,
+        genreId: 1,
         poster: "https://firebasestorage.googleapis.com/v0/b/cineflix-b3821.appspot.com/o/A_Farewell_to_Arms%201932.jpg?alt=media&token=91ac6c48-7186-410c-b30d-67f5bf502632",
         source: "https://firebasestorage.googleapis.com/v0/b/cineflix-b3821.appspot.com/o/farewell_to_arms_512kb.mp4?alt=media&token=91e3657d-1fe2-42bb-af23-b9c439bcd54b",
         des: "",
@@ -9,6 +10,7 @@ export default [
     {
         title: "Africa Speaks",
         releaseYear: 1930,
+        genreId: 2,
         poster: "https://firebasestorage.googleapis.com/v0/b/cineflix-b3821.appspot.com/o/Africa_Speaks%201930.jpg?alt=media&token=62d37105-ea4d-4457-873b-d66d62b751a0",
         source: "https://firebasestorage.googleapis.com/v0/b/cineflix-b3821.appspot.com/o/farewell_to_arms_512kb.mp4?alt=media&token=91e3657d-1fe2-42bb-af23-b9c439bcd54b",
         des: "",
@@ -16,6 +18,7 @@ export default [
     {
         title: "Alice in Wonderland",
         releaseYear: 1915,
+        genreId: 3,
         poster: "https://firebasestorage.googleapis.com/v0/b/cineflix-b3821.appspot.com/o/Alice_in_Wonderland%201915.jpg?alt=media&token=2de1f8ca-006a-45b5-9516-a51638d3bf2b",
         source: "https://firebasestorage.googleapis.com/v0/b/cineflix-b3821.appspot.com/o/AliceInWonderland-WithAudio_512kb.mp4?alt=media&token=85a7c62d-e82c-494e-9bb7-24f004d9a488",
         des: "",
@@ -23,24 +26,28 @@ export default [
     // {
     //     title: "Big Chance",
     //     releaseYear: 1933,
+    //     genreId: 4,
     //     poster: "https://firebasestorage.googleapis.com/v0/b/cineflix-b3821.appspot.com/o/Big_Chance%201933.jpg?alt=media&token=66744153-252a-453d-8296-17c584f30422",
     //     des: "",
     // },
     // {
     //     title: "Blue Steel",
     //     releaseYear: 1934,
+    //     genreId: 4,
     //     poster: "https://firebasestorage.googleapis.com/v0/b/cineflix-b3821.appspot.com/o/Blue_steel%201934.jpg?alt=media&token=7146bbb2-9674-4d39-b8f4-be1063670b43",
     //     des: "",
     // },
     // {
     //     title: "The brain that wouldn't die",
     //     releaseYear: 1962,
+    //     genreId: 5,
     //     poster: "https://firebasestorage.googleapis.com/v0/b/cineflix-b3821.appspot.com/o/Brainthatwouldntdie%201962.jpg?alt=media&token=470ead3a-fd0a-4ffb-a30e-a8b29c52b05a",
     //     des: "",
     // },
     // {
     //     title: "Carnival of Souls",
     //     releaseYear: 1962,
+
     //     poster: "https://firebasestorage.googleapis.com/v0/b/cineflix-b3821.appspot.com/o/Carnival_of_Souls%201962.jpg?alt=media&token=fe07b9ca-64bb-4d8a-9529-629b89cef566",
     //     des: "",
     // },
