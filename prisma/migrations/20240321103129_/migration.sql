@@ -21,7 +21,7 @@ CREATE TABLE `Film` (
     `title` VARCHAR(191) NOT NULL,
     `poster` LONGTEXT NOT NULL,
     `releaseYear` INTEGER NOT NULL,
-    `source` LONGTEXT NOT NULL,
+    `source` LONGTEXT NULL,
     `des` VARCHAR(191) NULL,
     `genreId` INTEGER NULL,
 
@@ -36,5 +36,20 @@ CREATE TABLE `Genre` (
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
+-- CreateTable
+CREATE TABLE `Favorite` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `userId` INTEGER NULL,
+    `filmId` INTEGER NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
 -- AddForeignKey
 ALTER TABLE `Film` ADD CONSTRAINT `Film_genreId_fkey` FOREIGN KEY (`genreId`) REFERENCES `Genre`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Favorite` ADD CONSTRAINT `Favorite_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Favorite` ADD CONSTRAINT `Favorite_filmId_fkey` FOREIGN KEY (`filmId`) REFERENCES `Film`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;

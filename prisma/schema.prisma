@@ -30,7 +30,7 @@ model Film {
   title       String
   poster      String     @db.LongText
   releaseYear Int
-  source      String     @db.LongText
+  source      String?     @db.LongText
   des         String?
   Genre       Genre?     @relation(fields: [genreId], references: [id])
   genreId     Int?

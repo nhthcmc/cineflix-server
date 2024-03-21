@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber } from "class-validator"
+import { IsNotEmpty, IsNumber, IsString } from "class-validator"
 
 export class UploadFilmDTO {
     @IsNotEmpty()
@@ -7,6 +7,6 @@ export class UploadFilmDTO {
     poster: string;
     @IsNumber()
     releaseYear: number;
-    @IsNotEmpty()
+    @IsString()
     source: string;
 }
